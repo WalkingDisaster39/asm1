@@ -33,27 +33,28 @@ print('\nmain:')
 print("    la x1, init_iregs")
 
 for i in range(30):
-    print('    lw x', i + 2, ', ', i * 4, '(x1)', sep='')
+    print('    lw x', i + 2, ', ', i * 4, '(x1)  #x',i+2,"=",sep='')
 
 print()
 
 for i in range(30):
-    print('    andi x', i + 2, ', x', i + 2, ', ', hex(im[i]), sep='')
+    print('    andi x', i + 2, ', x', i + 2, ', ', hex(im[i]), '   #x',i+2,'=',hex(im[i]),sep='')
 
 print()
 print("    la x1, save_x2")
 print("    sw x2, 0(x1)\n")
 print("    la x1, refs\n")
 
-for i in range(39):
-    print('    lw x2, ', (i + 1) * 4, '(x1)', sep='')
-    print('    bne x', i + 3, ', x2, pass_fail', sep='')
+for i in range(29):
+    print('    lw x2, ', (i + 1) * 4, '(x1)  #x2=',hex(ref[i+1]), sep='')
+    print('    bne x', i + 3, ', x2, pass_fail  #x',i+3,'=',hex(ref[i+1]),"  x",i+3,"==x2", sep='')
 print()
 print("    la x1, save_x2\n    lw x2, 0(x1)\n    la x1, refs\n    lw x3, 0(x1)\n    bne x3, x2, pass_fail", sep='')
 
 print("pass_ok:\n\taddi  x10, x0, 1\n\taddi   x11, x0, 5\n\tecall\n\tj    exit\n")
 print("pass_fail:\n\taddi  x10, x0, 11\n\taddi  x11, x0, 83\n\tecall\n")
 print("exit:\n\taddi  x10, x0, 10\n\tecall # terminate ecall")
+
 
 
 
